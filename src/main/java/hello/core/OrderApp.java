@@ -10,12 +10,11 @@ import hello.core.order.OrderServiceImpl;
 
 public class OrderApp {
     public static void main(String[] args) {
-        MemberRepository memberRepository = new MemoryMemberRepository();
-        OrderService orderService = new OrderServiceImpl();
+        AppConfig appConfig = new AppConfig();
         Member member = new Member(1L, "tester01", Grade.VIP);
-        memberRepository.save(member);
+        appConfig.memberService().join(member);
 
-        Order orderItem = orderService.createOrder(member.getId(), "item1", 5000);
+        Order orderItem = appConfig.orderService().createOrder(member.getId(), "item1", 5000);
         System.out.println("orderItem = " + orderItem);
     }
 }
